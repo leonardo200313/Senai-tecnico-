@@ -1,0 +1,34 @@
+let total = 0;
+
+function adicionar() {
+
+    let despesaTexto = document.getElementById('descricao').value;
+
+    let despesaValor = Number(document.getElementById('valor').value);
+
+    if (despesaTexto == "" || despesaValor <= 0) {
+        alert("INFORME A DESPESA E O VALOR!");
+        return;
+    }
+
+    total = total + despesaValor;
+
+    document.getElementById('total').innerText = total.toFixed(2);
+
+    document.getElementById('listaGastos').innerHTML +=
+        '<li>' + despesaTexto + ' - R$ ' + despesaValor.toFixed(2) +
+        '<button onclick="excluir(this, ' + despesaValor + ')">Excluir</button></li>';
+
+    document.getElementById('descricao').value = '';
+    document.getElementById('valor').value = '';
+}
+
+function excluir(botao, valor) {
+
+    botao.parentElement.remove();
+
+    total = total - valor;
+
+    document.getElementById('total').innerText = total.toFixed(2);
+
+}
